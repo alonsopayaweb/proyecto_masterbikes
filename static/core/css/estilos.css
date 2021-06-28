@@ -1,0 +1,61 @@
+
+.login {
+    border-radius: 2%;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}
+
+#inicioVen{
+    margin: 40px;
+    background: white;
+    padding: 30px;
+    border-radius: 4px ;
+    display: grid;
+    grid-template-columns: 50% 50% 50%;
+    column-gap: 30px;
+    height: 71.5vh;
+  
+  }
+  
+#inicioVen img {
+  border-radius: 50%;
+}
+
+#stock{
+  margin: 40px;
+  background: white;
+  padding: 30px;
+  border-radius: 4px ;
+  height: 71.5vh;
+
+}
+#stock h1{
+  font-size: 23px;
+  text-align: center;
+}
+
+#stocktable{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#stocktable th{
+  text-align: center;
+}
+
+#stocktable table, th, td {
+  border: 2px solid gray;
+  padding: 7px;
+  text-align: center;
+}
+
+#info{
+  font-size: 10px;
+  text-align: center;
+  color: red;
+}
