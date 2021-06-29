@@ -15,3 +15,12 @@ def historialReparacion(request):
 
 def registrarVenta(request):
     return render(request, 'core/registrarVenta.html')
+
+def arriendoBicicleta(request):
+    return render(request, 'core/arriendoBicicleta.html')
+
+def solicitarReparacion(request):
+    return render(request, 'core/solicitarReparacion.html')
+
+def productos(request):
+    return render(request, 'core/productos.html')

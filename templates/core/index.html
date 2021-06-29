@@ -14,6 +14,7 @@
         body {
             background-image: url("{% static 'core/img/fondo.jpg'%}");
             background-repeat: no-repeat;
+            background-attachment: fixed;
             min-width: 500px;
         }
     </style>
@@ -34,7 +35,7 @@
 					<a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Productos</a>
+					<a class="nav-link" href="{% url 'productos' %}">Productos</a>
 				</li>
 				{% if user.username == 'vendedor' %}
 				<li class="nav-item">
@@ -52,6 +53,13 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'historialReparacion' %}">Historial de reparaciones</a>
+				</li>
+                {% elif user.username == 'cliente' %}
+                <li class="nav-item">
+					<a class="nav-link" href="{% url 'arriendoBicicleta' %}">Arrendar Bicicleta</a>
+				</li>
+                <li class="nav-item">
+					<a class="nav-link" href="{% url 'solicitarReparacion' %}">Solicitar Reparación</a>
 				</li>
 				{% endif %}
 			</ul>
@@ -124,6 +132,25 @@
             <div style="text-align:center">
                 <img src="{% static 'core/img/perfilTecnico.png'%}" height="200px" width="200px">
                 <h1>Sr. Soy Jak</h1>
+
+            </div>
+
+
+        </div>
+
+    {% elif user.username == 'cliente' %}
+        <div id="inicioVen">
+
+            <div>
+                <h1>¡Bienvenido Cliente!</h1>
+                <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
+                    postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
+                </p>
+            </div>
+
+            <div style="text-align:center">
+                <img src="{% static 'core/img/perfilCliente.jpg'%}" height="200px" width="200px">
+                <h1>Sr. Ron Perlman</h1>
 
             </div>
 
