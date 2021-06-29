@@ -24,3 +24,9 @@ def solicitarReparacion(request):
 
 def productos(request):
     return render(request, 'core/productos.html')
+
+def reporteVentas(request):
+    return render(request, 'core/reporteVentas.html')
+
+def reporteServicios(request):
+    return render(request, 'core/reporteServicios.html')

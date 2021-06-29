@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	{% load static %}
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reporte de Servicios</title>
+	<link rel="stylesheet" href="{% static 'core/css/estilos.css'%}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<style>
+		body {
+			background-image: url("{% static 'core/img/fondo.jpg'%}");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			min-width: 500px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<!-- Menu -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">🚴‍♂️Masterbikes</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'productos' %}">Productos</a>
+				</li>
+				{% if user.username == 'vendedor' %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'stock' %}">Stock</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'registrarVenta' %}">Registrar Venta</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'listaReparacion' %}">Lista de reparaciones</a>
+				</li>
+				{% elif user.username == 'administrador' %}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Generar Reporte
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{% url 'reporteVentas' %}">Ventas</a>
+						<a class="dropdown-item" href="#">Servicios</a>
+						<a class="dropdown-item" href="#">Fabricación</a>
+					</div>
+				</li>
+				{% elif user.username == 'tecnico' %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'stock' %}">Stock</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'historialReparacion' %}">Historial de reparaciones</a>
+				</li>
+				{% elif user.username == 'cliente' %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'arriendoBicicleta' %}">Arrendar Bicicleta</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'solicitarReparacion' %}">Solicitar Reparación</a>
+				</li>
+				{% endif %}
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				{% if request.user.is_authenticated %}
+				<li class="nav-item active">
+					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">¡Bienvenido
+						{{user.username}}!</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+				</li>
+				{% else %}
+				<li>
+					<a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+
+
+	<div class="container bg-light my-5 py-4 navbar-fixed-bottom" style="border-radius: 10px;">
+		<div class="col d-flex justify-content-between my-2">
+			<h1>Reporte de Servicios de Arriendo</h1>
+			<button type="button" class="btn btn-primary" id="generar1">Generar Reporte</button>
+		</div>
+		<table class="table table-striped table-dark d-none my-3" id="tablaArriendo">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Nombre Cliente</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Modelos</th>
+					<th scope="col">Fecha Inicio</th>
+					<th scope="col">Fecha Termino</th>
+					<th scope="col">Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>Sebastian Blanco</td>
+					<td>2</td>
+					<td>BIANCHI ADVANTAGE 27,5(2)</td>
+					<td>05-05-2021</td>
+					<td>09-05-2021</td>
+					<td>$25.000</td>
+
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>Fernando Sepulveda</td>
+					<td>4</td>
+					<td>
+						<p>BIANCHI PEREGRINE 29(2)</p>
+						<p>BICICLETA BIANCHI GOLIAT 16(2)</p>
+					</td>
+					<td>12-05-2021</td>
+					<td>14-05-2021</td>
+					<td>$18.050</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td>Williams Lira</td>
+					<td>1</td>
+					<td>
+						<p>KAPRA MTB B-100 SX 27.5</p>
+					</td>
+					<td>11-05-2021</td>
+					<td>18-05-2021</td>
+					<td>$9.500</td>
+				</tr>
+				<tr>
+					<th scope="row">4</th>
+					<td>Pedro Alfonso</td>
+					<td>1</td>
+					<td>
+						<p>SCOOTER ELECTRICO ALPINA E-SCOOTER A3</p>
+					</td>
+					<td>16-05-2021</td>
+					<td>16-05-2021</td>
+					<td>$5.000</td>
+				</tr>
+				<tr>
+					<th scope="row">5</th>
+					<td>Marta Gonzales</td>
+					<td>3</td>
+					<td>
+						<p>BICICLETA BARBIE 12(2)</p>
+						<p>BIANCHI 20 CLASSIC GIRL(1)</p>
+					</td>
+					<td>18-05-2021</td>
+					<td>19-05-2021</td>
+					<td>$8.550</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="col d-flex justify-content-between my-2">
+			<h1>Reporte de Servicios de Reparación</h1>
+			<button type="button" class="btn btn-primary" id="generar2">Generar Reporte</button>
+		</div>
+		<table class="table table-striped table-dark d-none my-3" id="tablaReparacion">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Cliente</th>
+					<th scope="col">Producto</th>
+					<th scope="col">Problema</th>
+					<th scope="col">Tecnico</th>
+					<th scope="col">Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">1</th>
+					<td>$200.000</td>
+					<td>$350.000</td>
+					<td>$0</td>
+					<td>$145.050</td>
+					<td>$425.150</td>
+					<td>$1.120.200</td>
+
+				</tr>
+				<tr>
+					<th scope="row">2</th>
+					<td>$231.050</td>
+					<td>$122.050</td>
+					<td>$120.750</td>
+					<td>$30.050</td>
+					<td>$43.050</td>
+					<td>$546.950</td>
+				</tr>
+				<tr>
+					<th scope="row">3</th>
+					<td>$70.060</td>
+					<td>$112.540</td>
+					<td>$35.120</td>
+					<td>$80.000</td>
+					<td>$120.730</td>
+					<td>$418.450</td>
+				</tr>
+				<tr>
+					<th scope="row">4</th>
+					<td>$23.000</td>
+					<td>$57.050</td>
+					<td>$2.750</td>
+					<td>$30.050</td>
+					<td>$43.050</td>
+					<td>$155.900</td>
+				</tr>
+				<tr>
+					<th scope="row">5</th>
+					<td>$35.150</td>
+					<td>$12.950</td>
+					<td>$90.055</td>
+					<td>$9.050</td>
+					<td>$72.050</td>
+					<td>$219.255</td>
+				</tr>
+				<tr>
+					<th scope="row">5</th>
+					<td>$5.150</td>
+					<td>$11.000</td>
+					<td>$2.550</td>
+					<td>$3.150</td>
+					<td>$950</td>
+					<td>$22.800</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<!-- Pie de Pagina -->
+	<footer class="container-fluid py-3 bg-dark text-white position-static navbar-fixed-bottom">
+		<p class="d-flex justify-content-center text-center m-0">2021 © Todos los Derechos Reservados</p>
+	</footer>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+		integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+		crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function () {
+			$('#generar1').click(function () {
+				$('#tablaArriendo').removeClass('d-none');
+			})
+			$('#generar2').click(function () {
+				$('#tablaReparacion').removeClass('d-none');
+			})
+
+		})
+	</script>
+</body>
+
+</html>

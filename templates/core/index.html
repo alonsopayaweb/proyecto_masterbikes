@@ -23,173 +23,185 @@
 
 <body>
     <!-- Menu -->
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">🚴‍♂️Masterbikes</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active">
-					<a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'productos' %}">Productos</a>
-				</li>
-				{% if user.username == 'vendedor' %}
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'stock' %}">Stock</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'registrarVenta' %}">Registrar Venta</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'listaReparacion' %}">Lista de reparaciones</a>
-				</li>
-				{% elif user.username == 'tecnico' %}
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'stock' %}">Stock</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'historialReparacion' %}">Historial de reparaciones</a>
-				</li>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">🚴‍♂️Masterbikes</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'index' %}">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+                </li>
+                {% if user.username == 'vendedor' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stock' %}">Stock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registrarVenta' %}">Registrar Venta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listaReparacion' %}">Lista de reparaciones</a>
+                </li>
+                {% elif user.username == 'administrador' %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Generar Reporte
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'reporteVentas' %}">Ventas</a>
+                        <a class="dropdown-item" href="{% url 'reporteServicios' %}">Servicios</a>
+                        <a class="dropdown-item" href="#">Fabricación</a>
+                    </div>
+                </li>
+                {% elif user.username == 'tecnico' %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'stock' %}">Stock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'historialReparacion' %}">Historial de reparaciones</a>
+                </li>
                 {% elif user.username == 'cliente' %}
                 <li class="nav-item">
-					<a class="nav-link" href="{% url 'arriendoBicicleta' %}">Arrendar Bicicleta</a>
-				</li>
+                    <a class="nav-link" href="{% url 'arriendoBicicleta' %}">Arrendar Bicicleta</a>
+                </li>
                 <li class="nav-item">
-					<a class="nav-link" href="{% url 'solicitarReparacion' %}">Solicitar Reparación</a>
-				</li>
-				{% endif %}
-			</ul>
-			<ul class="navbar-nav ml-auto">
-				{% if request.user.is_authenticated %}
-				<li class="nav-item active">
-					<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">¡Bienvenido
-						{{user.username}}!</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
-				</li>
-				{% else %}
-				<li>
-					<a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
-				</li>
-				{% endif %}
-			</ul>
-		</div>
-	</nav>
+                    <a class="nav-link" href="{% url 'solicitarReparacion' %}">Solicitar Reparación</a>
+                </li>
+                {% endif %}
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">¡Bienvenido
+                        {{user.username}}!</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
 
     {% if user.username == 'vendedor' %}
-        <div id="inicioVen">
+    <div id="inicioVen">
 
-            <div>
-                <h1>¡Bienvenido Vendedor!</h1>
-                <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
-                    postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
-                </p>
-            </div>
+        <div>
+            <h1>¡Bienvenido Vendedor!</h1>
+            <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
+                postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
+            </p>
+        </div>
 
-            <div style="text-align:center">
-                <img src="{% static 'core/img/perfilVendedor.jpg'%}" height="200px" width="200px">
-                <h1>Srta. Nobara Kugisaki</h1>
-                <p>Ventas: 4</p>
-
-            </div>
-
+        <div style="text-align:center">
+            <img src="{% static 'core/img/perfilVendedor.jpg'%}" height="200px" width="200px">
+            <h1>Srta. Nobara Kugisaki</h1>
+            <p>Ventas: 4</p>
 
         </div>
+
+
+    </div>
     {% elif user.username == 'administrador' %}
-        <div id="inicioVen">
+    <div id="inicioVen">
 
-            <div>
-                <h1>¡Bienvenido Administrador!</h1>
-                <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
-                    postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
-                </p>
-            </div>
+        <div>
+            <h1>¡Bienvenido Administrador!</h1>
+            <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
+                postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
+            </p>
+        </div>
 
-            <div style="text-align:center">
-                <img src="{% static 'core/img/perfilAdministrador.jpg'%}" height="200px" width="200px">
-                <h1>Sr. Rey Julien</h1>
-
-            </div>
-
+        <div style="text-align:center">
+            <img src="{% static 'core/img/perfilAdministrador.jpg'%}" height="200px" width="200px">
+            <h1>Sr. Rey Julien</h1>
 
         </div>
+
+
+    </div>
 
     {% elif user.username == 'tecnico' %}
-        <div id="inicioVen">
+    <div id="inicioVen">
 
-            <div>
-                <h1>¡Bienvenido Técnico!</h1>
-                <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
-                    postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
-                </p>
-            </div>
+        <div>
+            <h1>¡Bienvenido Técnico!</h1>
+            <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
+                postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
+            </p>
+        </div>
 
-            <div style="text-align:center">
-                <img src="{% static 'core/img/perfilTecnico.png'%}" height="200px" width="200px">
-                <h1>Sr. Soy Jak</h1>
-
-            </div>
-
+        <div style="text-align:center">
+            <img src="{% static 'core/img/perfilTecnico.png'%}" height="200px" width="200px">
+            <h1>Sr. Soy Jak</h1>
 
         </div>
+
+
+    </div>
 
     {% elif user.username == 'cliente' %}
-        <div id="inicioVen">
+    <div id="inicioVen">
 
-            <div>
-                <h1>¡Bienvenido Cliente!</h1>
-                <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
-                    postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
-                </p>
-            </div>
+        <div>
+            <h1>¡Bienvenido Cliente!</h1>
+            <p>Lorem ipsum dolor sit amet, usu at dicam dolore inimicus. Ad voluptua definiebas vim, te vim omnes
+                postulant. Oblique facilisis id qui. Eros latine pertinax no pri, his ei lorem nominati.
+            </p>
+        </div>
 
-            <div style="text-align:center">
-                <img src="{% static 'core/img/perfilCliente.jpg'%}" height="200px" width="200px">
-                <h1>Sr. Ron Perlman</h1>
-
-            </div>
-
+        <div style="text-align:center">
+            <img src="{% static 'core/img/perfilCliente.jpg'%}" height="200px" width="200px">
+            <h1>Sr. Ron Perlman</h1>
 
         </div>
+
+
+    </div>
 
     {% else %}
 
-        <div class="container bg-light my-5 py-4 navbar-fixed-bottom" style="border-radius: 10px;">
-            <h1 class="text-center pb-2">Bienvenido a Masterbikes</h1>
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{% static 'core/img/tienda.jpg'%}" class="d-block w-100 rounded" alt="..." height="600px">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{% static 'core/img/taller.jpeg'%}" class="d-block w-100 rounded" alt="..."
-                            height="600px">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{% static 'core/img/vendedor.jpg'%}" class="d-block w-100 rounded" alt="..."
-                            height="600px">
-                    </div>
+    <div class="container bg-light my-5 py-4 navbar-fixed-bottom" style="border-radius: 10px;">
+        <h1 class="text-center pb-2">Bienvenido a Masterbikes</h1>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'core/img/tienda.jpg'%}" class="d-block w-100 rounded" alt="..." height="600px">
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <div class="carousel-item">
+                    <img src="{% static 'core/img/taller.jpeg'%}" class="d-block w-100 rounded" alt="..."
+                        height="600px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'core/img/vendedor.jpg'%}" class="d-block w-100 rounded" alt="..."
+                        height="600px">
+                </div>
             </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+    </div>
     {% endif %}
 
 

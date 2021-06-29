@@ -44,6 +44,18 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'listaReparacion' %}">Lista de reparaciones</a>
 				</li>
+                {% elif user.username == 'administrador' %}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Generar Reporte
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{% url 'reporteVentas' %}">Ventas</a>
+						<a class="dropdown-item" href="{% url 'reporteServicios' %}">Servicios</a>
+						<a class="dropdown-item" href="#">Fabricación</a>
+					</div>
+				</li>
 				{% elif user.username == 'tecnico' %}
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'stock' %}">Stock</a>
