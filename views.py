@@ -30,3 +30,6 @@ def reporteVentas(request):
 
 def reporteServicios(request):
     return render(request, 'core/reporteServicios.html')
+
+def reporteFabricacion(request):
+    return render(request, 'core/reporteFabricacion.html')
