@@ -44,16 +44,6 @@ footer {
   margin-right: auto;
 }
 
-#stocktable th{
-  text-align: center;
-}
-
-#stocktable table, th, td {
-  border: 2px solid gray;
-  padding: 7px;
-  text-align: center;
-}
-
 #info{
   font-size: 10px;
   text-align: center;

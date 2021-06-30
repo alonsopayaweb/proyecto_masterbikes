@@ -66,10 +66,10 @@
 					<a class="nav-link" href="#">Historial de reparaciones</a>
 				</li>
 				{% elif user.username == 'cliente' %}
-                <li class="nav-item">
+				<li class="nav-item">
 					<a class="nav-link" href="{% url 'arriendoBicicleta' %}">Arrendar Bicicleta</a>
 				</li>
-                <li class="nav-item">
+				<li class="nav-item">
 					<a class="nav-link" href="{% url 'solicitarReparacion' %}">Solicitar Reparación</a>
 				</li>
 				{% endif %}
@@ -93,76 +93,68 @@
 	</nav>
 
 
-	<div id="stock">
+	<div class="container bg-light my-5 py-4 navbar-fixed-bottom" style="border-radius: 10px;">
 		<div class="container d-flex justify-content-between">
 			<h1>Historial de Reparaciones</h1>
 			<a href="{% url 'index' %}" class="btn btn-info my-2" role="button">Volver</a>
 		</div>
 		<br>
-		<table id="stocktable">
+		<table class="table table-dark" id="stocktable">
 
-			<tr>
-				<th>Ticket</th>
-				<th>Fecha</th>
-				<th>Modelo</th>
-				<th>Dueño</th>
-			</tr>
+			<thead>
+				<tr>
+					<th scope="col">Ticket</th>
+					<th scope="col">Fecha</th>
+					<th scope="col">Modelo</th>
+					<th scope="col">Dueño</th>
+				</tr>
+			</thead>
 
-			<tr>
-				<td>D00004</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>11.347.033-3</td>
-			</tr>
+			<tbody>
 
-			<tr>
-				<td>D00003</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>13.177.033-3</td>
-			</tr>
+				<tr>
+					<th scope="row">D00004</th>
+					<td>08/05/2021</td>
+					<td>La nae 1</td>
+					<td>11.347.033-3</td>
+				</tr>
+	
+				<tr>
+					<th scope="row">D00003</th>
+					<td>08/05/2021</td>
+					<td>La nae 1</td>
+					<td>13.177.033-3</td>
+				</tr>
 
-			<tr>
-				<td>D00002</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>15.177.033-3</td>
-			</tr>
-
-			<tr>
-				<td>D00001</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>17.177.033-3</td>
-			</tr>
-
-			<tr>
-				<td>D00001</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>17.177.033-3</td>
-			</tr>
-
-			<tr>
-				<td>D00001</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>17.177.033-3</td>
-			</tr>
-
-			<tr>
-				<td>D00001</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>17.177.033-3</td>
-			</tr>
-
-			<tr>
-				<td>D00001</td>
-				<td>08/05/2021</td>
-				<td>La nae 1</td>
-				<td>17.177.033-3</td>
-			</tr>
+	
+				<tr>
+					<th scope="row">D00001</th>
+					<td>08/05/2021</td>
+					<td>La nae 1</td>
+					<td>17.177.033-3</td>
+				</tr>
+	
+				<tr>
+					<th scope="row">D00001</th>
+					<td>08/05/2021</td>
+					<td>La nae 1</td>
+					<td>17.177.033-3</td>
+				</tr>
+	
+				<tr>
+					<th scope="row">D00001</th>
+					<td>08/05/2021</td>
+					<td>La nae 1</td>
+					<td>17.177.033-3</td>
+				</tr>
+	
+				<tr>
+					<th scope="row">D00001</th>
+					<td>08/05/2021</td>
+					<td>La nae 1</td>
+					<td>17.177.033-3</td>
+				</tr>
+			</tbody>
 
 		</table>
 		<br>
@@ -178,7 +170,7 @@
 
 
 	<!-- Pie de Pagina -->
-	<footer class="container-fluid py-3 bg-dark text-white">
+	<footer class="container-fluid py-3 bg-dark text-white position-static navbar-fixed-bottom">
 		<p class="d-flex justify-content-center text-center m-0">2021 © Todos los Derechos Reservados</p>
 	</footer>
 

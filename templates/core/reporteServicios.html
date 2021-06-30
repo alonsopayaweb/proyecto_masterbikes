@@ -11,11 +11,17 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
 		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	<style>
+
+		
 		body {
 			background-image: url("{% static 'core/img/fondo.jpg'%}");
 			background-repeat: no-repeat;
 			background-attachment: fixed;
 			min-width: 500px;
+		}
+
+		footer {
+			position: relative !important;
 		}
 	</style>
 
@@ -234,7 +240,7 @@
 
 
 	<!-- Pie de Pagina -->
-	<footer class="container-fluid py-3 bg-dark text-white position-static navbar-fixed-bottom">
+	<footer class="container-fluid py-3 bg-dark text-white navbar-fixed-bottom" style="margin-top: 349px;">
 		<p class="d-flex justify-content-center text-center m-0">2021 © Todos los Derechos Reservados</p>
 	</footer>
 
@@ -253,9 +259,12 @@
 		$(document).ready(function () {
 			$('#generar1').click(function () {
 				$('#tablaArriendo').removeClass('d-none');
+				$("footer").removeAttr("style");
+
 			})
 			$('#generar2').click(function () {
 				$('#tablaReparacion').removeClass('d-none');
+				$("footer").removeAttr("style");
 			})
 
 		})

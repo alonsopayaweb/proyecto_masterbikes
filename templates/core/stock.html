@@ -44,17 +44,17 @@
 					<a class="nav-link" href="{% url 'listaReparacion' %}">Lista de reparaciones</a>
 				</li>
 				{% elif user.username == 'administrador' %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Generar Reporte
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{% url 'reporteVentas' %}">Ventas</a>
-                        <a class="dropdown-item" href="{% url 'reporteServicios' %}">Servicios</a>
-                        <a class="dropdown-item" href="{% url 'reporteFabricacion' %}">Fabricación</a>
-                    </div>
-                </li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Generar Reporte
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{% url 'reporteVentas' %}">Ventas</a>
+						<a class="dropdown-item" href="{% url 'reporteServicios' %}">Servicios</a>
+						<a class="dropdown-item" href="{% url 'reporteFabricacion' %}">Fabricación</a>
+					</div>
+				</li>
 				{% elif user.username == 'tecnico' %}
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'stock' %}">Stock</a>
@@ -63,10 +63,10 @@
 					<a class="nav-link" href="{% url 'historialReparacion' %}">Historial de reparaciones</a>
 				</li>
 				{% elif user.username == 'cliente' %}
-                <li class="nav-item">
+				<li class="nav-item">
 					<a class="nav-link" href="{% url 'arriendoBicicleta' %}">Arrendar Bicicleta</a>
 				</li>
-                <li class="nav-item">
+				<li class="nav-item">
 					<a class="nav-link" href="{% url 'solicitarReparacion' %}">Solicitar Reparación</a>
 				</li>
 				{% endif %}
@@ -98,62 +98,46 @@
 		</div>
 
 		<br>
-		<table id="stocktable">
-
-			<tr>
-				<th>Nombre</th>
-				<th>ID Producto</th>
-				<th>Cantidad</th>
-			</tr>
-
-			<tr>
-				<td>La nae 1</td>
-				<td>D1JDF67</td>
-				<td>23</td>
-			</tr>
-
-			<tr>
-				<td>La nae 2</td>
-				<td>ABJDF67</td>
-				<td>3</td>
-			</tr>
-
-			<tr>
-				<td>La nae 3</td>
-				<td>C4JDF67</td>
-				<td>7</td>
-			</tr>
-
-			<tr>
-				<td>La nae 4</td>
-				<td>C3JDF67</td>
-				<td>15</td>
-			</tr>
-
-			<tr>
-				<td>La nae 5</td>
-				<td>C2JDF67</td>
-				<td>33</td>
-			</tr>
-
-			<tr>
-				<td>La nae 6</td>
-				<td>C7JDF67</td>
-				<td>17</td>
-			</tr>
-
-			<tr>
-				<td>La nae 7</td>
-				<td>C6JDF67</td>
-				<td>11</td>
-			</tr>
-
-			<tr>
-				<td>La nae 8</td>
-				<td>C5JDF67</td>
-				<td>2</td>
-			</tr>
-
+		<table class="table table-striped table-dark">
+			<thead class="text-center">
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">ID Producto</th>
+					<th scope="col">Cantidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">Bicicleta 1</th>
+					<td>D1JDF67</td>
+					<td>23</td>
+				</tr>
+				<tr>
+					<th scope="row">Bicicleta 2</th>
+					<td>ABJDF67</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<th scope="row">Bicicleta 3</th>
+					<td>C4JDF67</td>
+					<td>7</td>
+				</tr>
+				<tr>
+					<th scope="row">Bicicleta 4</th>
+					<td>H234F67</td>
+					<td>9</td>
+				</tr>
+				<tr>
+					<th scope="row">Bicicleta 5</th>
+					<td>C8GDF67</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<th scope="row">Bicicleta 6</th>
+					<td>C4SD67</td>
+					<td>36</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 
